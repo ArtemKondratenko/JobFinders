@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Стили для заголовка h1 */
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    /* Стили для заголовка h2 */
+    h2 {
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    /* Стили для списка ul */
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Стили для элемента списка li */
+    li {
+      margin-bottom: 5px;
+    }
+
+    body {
+      background-image: url({{ url_for('static', filename='1.jpg') }});
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* Декоративные стили */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      /* background-color: #87CEEB; */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>VacancyInvitation:</h2>
+    <ul>
+      {% for vacancy_invitation in vacancy_invitations %}
+      <li>
+        <h3>{{ vacancy_invitation.vacancy.name }}</h3>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>

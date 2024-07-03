@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Стили для заголовка h1 */
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    /* Стили для заголовка h2 */
+    h2 {
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    /* Стили для списка ul */
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Стили для элемента списка li */
+    li {
+      margin-bottom: 5px;
+    }
+
+    body {
+      background-image: url({{ url_for('static', filename='1.jpg') }});
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* Декоративные стили */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      /* background-color: #87CEEB; */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Resumies:</h2>
+    <ul>
+      {% for resume in resumies %}
+      <li>
+        <h3>{{ resume.name }}</h3>
+        <p>{{ resume.description }}</p>
+        <form method="POST" action="/invitation_interview">
+          <input type="hidden" name="resume_id" value="{{ resume.id }}">
+          <input type="submit" value="Пригласить">
+
+          <h2>Vacancy:</h2>
+          <select name="vacancy_id" id="vacancy_id">
+
+            {% for vacancy in company.vacancies %}
+            <option value="{{vacancy.id }}">{{ vacancy.name }}</option>
+            {% endfor %}
+          </select>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>

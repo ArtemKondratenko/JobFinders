@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Стили для заголовка h1 */
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    /* Стили для заголовка h2 */
+    h2 {
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    /* Стили для списка ul */
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Стили для элемента списка li */
+    li {
+      margin-bottom: 5px;
+    }
+
+    body {
+      background-image: url({{ url_for('static', filename='1.jpg') }});
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* Декоративные стили */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      /* background-color: #87CEEB; */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Vacancies:</h2>
+    <ul>
+      {% for vacancy in vacancies %}
+      <li>
+        <h3>{{ vacancy.name }}</h3>
+        <p>{{ vacancy.description }}</p>
+        <form method="POST" action="/vacancy_responses">
+          <input type="hidden" name="vacancy_id" value="{{ vacancy.id }}">
+          <input type="submit" value="Откликнуться">
+
+          <h2>Resume:</h2>
+          <select name="resume_id" id="resume_id">
+
+            {% for resume in employee.resumes %}
+            <option value="{{resume.id }}">{{ resume.name }}</option>
+            {% endfor %}
+          </select>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>

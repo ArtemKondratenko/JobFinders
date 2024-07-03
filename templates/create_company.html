@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Стили для ввода */
+    .input-field {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      width: 200px;
+    }
+
+    /* Стили для кнопки */
+    .button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+    body {
+      background-image: url({{ url_for('static', filename='1.jpg') }});
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      /* background-color: #87CEEB; /* Добавляем заданный фоновый цвет */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form method="POST" action="/companies">
+      <input type="text" name="name"  placeholder="Введите имя">
+      <input type="password" name="password"  placeholder="Введите пароль">
+      <input type="text" name="email"  placeholder="Введите email">
+      <button type="submit" class="button">Регистрация компании</button>
+    </form>
+  </div>
+</body>
+</html>

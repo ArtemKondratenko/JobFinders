@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Стили для заголовка h1 */
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    /* Стили для заголовка h2 */
+    h2 {
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    /* Стили для списка ul */
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Стили для элемента списка li */
+    li {
+      margin-bottom: 5px;
+    }
+
+    body {
+      background-image: url({{ url_for('static', filename='1.jpg') }});
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* Декоративные стили */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      /* background-color: #87CEEB;*/
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>{{ company.name }}</h1>
+    <h2>Vacancies:</h2>
+    <ul>
+      {% for vacancy in company.vacancies %}
+      <h3>{{ vacancy.name }}</h3>
+      <li>{{ vacancy.description}}</li>
+      {% endfor %}
+    </ul>
+    <h2>Создать вакансию:</h2>
+    <form method="POST" action="/vacancies">
+
+      <label for="name">Название:</label><br>
+      <input type="text" id="name" name="name"><br>
+
+      <label for="description">Описание:</label><br>
+      <textarea id="description" name="description"></textarea><br>
+
+      <input type="submit" value="Создать">
+    </form>
+    <h2>Просмотреть отклики:</h2>
+    <a href="/responses">Перейти на страницу откликов</a>
+    <a href="/resumies">Посмотреть все резюме</a>
+     <a href="/logout">Выйти</a>
+  </div>
+</body>
+</html>
